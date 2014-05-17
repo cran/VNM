@@ -1,0 +1,206 @@
+Deff <-
+function(weight,T,dose,nit,LB,UB)
+{
+    ginv<-function(X, tol = sqrt(.Machine$double.eps))
+    {
+         dnx <- dimnames(X)
+         if(is.null(dnx)) dnx <- vector("list", 2)
+         s <- svd(X)
+         nz <- s$d > tol * s$d[1]
+         structure(
+                if(any(nz)) s$v[, nz] %*% (t(s$u[, nz])/s$d[nz]) else X,
+                dimnames = dnx[2:1]
+         )
+     }
+
+     LB=round(LB,2)
+     UB=round(UB,2)
+     x=seq(LB,UB,.01)
+
+     k=length(T)
+     nit=nit
+
+     infor<-function(T,X)
+     {
+          f=matrix(c(1/(1+exp(T[2]*X+T[3])),(-T[1]*X*exp(T[2]*X+T[3]))/(1+exp(T[2]*X+T[3]))^2,(-T[1]*exp(T[2]*X+T[3]))/(1+exp(T[2]*X+T[3]))^2,1),nrow=4,ncol=1,byrow=F)
+          f%*%t(f)
+     }
+
+     upinfor<-function(W,T,X)
+     {
+          k=length(X)
+          last_infor=infor(T,X[k])
+          infor=(1-sum(W))*last_infor
+          for (i in 1:(k-1)) {
+               infor=infor+W[i]*infor(T,X[i])
+          }
+          infor
+     }
+
+     d1<-function(T,X,XL,inv)
+     {
+          sum(diag(inv%*%(infor(T,X)-infor(T,XL))))
+     }
+
+     dd1<-function(T,X1,X2,XL,inv)
+     {
+          sum(diag(-inv%*%(infor(T,X2)-infor(T,XL))%*%inv%*%(infor(T,X1)-infor(T,XL))))
+     }
+
+     D_weight<-function(W,T,X,d)
+     {
+          p=length(W)
+          k=length(X)
+          inv=ginv(upinfor(W,T,X))
+          M=upinfor(W,T,X)
+          f1=rep(0,p)
+          f2=matrix(c(rep(f1,p)),nrow=p,ncol=p,byrow=F)
+          for (i in 1:p) {
+               f1[i]=d1(T,X[i],X[k],inv)
+          }
+          for(i in 1:p) {
+               for(j in 1:p) {
+                     f2[i,j]=dd1(T,X[i],X[j],X[k],inv)
+               }
+          }
+          newweight=W-d*(f1%*%ginv(f2))
+          newweight
+     }
+
+     search_weight<-function(X,T)
+     {
+          diff=10
+          k=length(X)
+          W=rep(1/k,k-1)
+          while(diff>.000000001) {
+                d=.2
+                NW=D_weight(W,T,X,d)
+                minW=min(min(NW),1-sum(NW))
+                while(minW<0 & d>.0001) {
+                      d=d/2
+                      NW=D_weight(W,T,X,d)
+                      minW=min(min(NW),1-sum(NW))
+                }
+                NW=c(NW,1-sum(NW))
+                n=length(NW)
+                minW=min(NW)
+                if (minW<0) {
+                      for(i in 1:n) {
+                             if (NW[i]==minW)NW[i]=0
+                      }
+                }
+                diff=max(abs(W-NW[1:n-1]))
+                D=rbind(X,NW)
+                for (i in 1:n) {
+                      if (D[2,i]==0) D[,i]=NA
+                }
+                X=D[1,]
+                W=D[2,]
+                X=na.omit(X)
+                W=na.omit(W)
+                k=length(X)
+                W=W[1:k-1]
+          }
+          W=c(W,1-sum(W))
+          D=rbind(X,W)
+          D
+      }
+
+      X=c(LB,LB+(UB-LB)/3,LB+2*(UB-LB)/3,UB)
+      W=rep(1/4,3)
+      n=1
+      p=1
+      
+      f<-function(T,X)
+      {
+           matrix(c(1/(1+exp(T[2]*X+T[3])),(-T[1]*X*exp(T[2]*X+T[3]))/(1+exp(T[2]*X+T[3]))^2,(-T[1]*exp(T[2]*X+T[3]))/(1+exp(T[2]*X+T[3]))^2,1),nrow=4,ncol=1,byrow=F)
+      }
+     
+      M=upinfor(W,T,X)
+      while(n<nit){
+           x=seq(LB,UB,.01)
+           n1=length(x)
+           ds=rep(0,n1)
+           inv=ginv(M)
+           for (i in 1:n1) {
+                 ds[i]=t(f(T,x[i]))%*%inv%*%f(T,x[i])
+           }
+           for (i in 1:n1) {
+                 if(max(ds)==ds[i])x[i]=x[i] else x[i]=NA
+           }
+           newX=na.omit(x)
+           newX=round(newX,2)
+           newds=max(ds)
+           an=1/(n+1)
+           p=abs(newds-4)
+           newM=(1-an)*M+an*f(T,newX)%*%t(f(T,newX))
+           M=newM
+           X=c(X,newX)
+           n=n+1
+      }
+      r=length(X)
+      X=unique(X[(r-4):r])
+      R=search_weight(X,T)
+      X=R[1,]
+      k=length(X)
+      W=R[2,1:k-1]
+       
+      f<-function(T,X)
+      {
+           matrix(c(1/(1+exp(T[2]*X+T[3])),(-T[1]*X*exp(T[2]*X+T[3]))/(1+exp(T[2]*X+T[3]))^2,(-T[1]*exp(T[2]*X+T[3]))/(1+exp(T[2]*X+T[3]))^2,1),nrow=4,ncol=1,byrow=F)
+      }
+
+      n=1
+      p=1
+      it=1
+      while(p>.001) {
+           x=seq(LB,UB,.01)
+           n1=length(x)
+           ds=rep(0,n1)
+           inv=ginv(upinfor(W,T,X))
+           for (i in 1:n1) {
+                ds[i]=t(f(T,x[i]))%*%inv%*%f(T,x[i])
+           }
+           for (i in 1:n1) {
+                if(max(ds)==ds[i])x[i]=x[i] else x[i]=NA
+           }
+           newX=na.omit(x)
+           newX=round(newX,2)
+           newds=max(ds)
+           X=c(X,newX)
+           X=sort(X,decreasing=F)
+           X=unique(X)
+           D=search_weight(X,T)
+           X=D[1,]
+           k=length(X)
+           W=D[2,1:k-1]
+           newp=abs(newds-4)
+           if(abs(newp-p)<.0000000001) newp=.000001
+           if(it>20)newp=.000001
+           p=newp
+           it=it+1
+      }
+
+      k=4
+
+      X=D[1,]
+      n=length(X)
+      W=D[2,1:n-1]
+      M=upinfor(W,T,X)
+      x1=seq(LB,UB,.01)
+      n1=length(x1)
+      ds=rep(0,n1)
+      for (i in 1:n1) {
+            ds[i]=t(f(T,x1[i]))%*%ginv(M)%*%f(T,x1[i])-k
+      }
+
+      plot(x1,ds,cex=.3,main="Verify the D-optimal design",ylab="Sensitive function",xlab="Dose levels")
+
+      kk=length(dose)
+      weight=weight[1:kk-1]
+      eff=(det(upinfor(weight,T,dose))/det(upinfor(W,T,X)))^(1/k)
+      cat(format("D-optimal design", width=80),"\n")
+      print(D)
+      cat(format("D-efficiency", width=80),"\n")
+      print(eff)
+}
