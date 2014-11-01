@@ -1,33 +1,28 @@
 \name{VNM-package}
 \alias{VNM-package}
 \docType{package}
-\title{ Obtaining multiple objective optimal design.}
-\description{ This package is for obtaining multiple objective optimal design for 
-estimating three objectives: estimating model paramters; estimating ED50; estimating 
-the minimum effective dose (MED).
+\title{ Using V-algorithm and Newton-Raphson Method to Obtain Multiple-objective Optimal Design.}
+\description{Using V-algorithm and Newton-Raphson method to obtain multiple-objective optimal design for estimating the shape of dose-response,
+ the ED50 (the dose producing an effect mid-way between the expected responses at the extreme doses) and the MED (the minimum effective dose level) 
+for the 4-parameter logistic model and for evaluating its efficiencies for the three objectives. 
 }
 \details{
 \tabular{ll}{
 Package: \tab VNM\cr
 Type: \tab Package\cr
-Version: \tab 1.0\cr
-Date: \tab 2014-05-15\cr
+Version: \tab 2.0\cr
+Date: \tab 2014-10-31\cr
 License: \tab GPL-2\cr
 }
  }
 \author{ Seung Won Hyun, Weng Kee Wong, and Yarong Yang  }
-\references{ Multiple Objective Optimal Designs to Study the
-Interesting Features in a Dose-Response Relationship, forthcoming.  }
+\references{Seung Won Hyun, Weng Kee Wong, and Yarong Yang (2014), VNM: An R Package for Finding Multiple-Objective Optimal Designs for the 4-Parameter Logistic Model, submitted to Journal of Statistical Software.
 
- \keyword{package }
+Seung Won Hyun and Weng Kee Wong (2014), Multiple Objective Optimal Designs to Study the Interesting Features in a Dose-Response Relationship, submitted to the International Journal of Biostatistics.
+}
+
+\keyword{package }
 
 \examples{
-   LB1=-3
-   UB1=0
-   nit1<-10
-   T1<-c(-1.563,-0.825,-0.653,1.700)
-   q11<-1/2
-   q22<-1/3
-   dt1<--1
-   MOPT(LB=LB1, UB=UB1, nit=nit1, T=T1, q1=q11, q2=q22, dt=dt1)
+    MOPT(LB=-3, UB=0, P=c(0.137,1.563,0.453,-0.825), lambda=c(1/2,1/3), delta=-1)
 }

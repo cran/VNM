@@ -1,11 +1,22 @@
 MOPT <-
-function(LB, UB, nit, T, q1, q2, dt){
-      q3=1-q1-q2
+function(LB,UB,P,lambda,delta,r=10,grid=0.01,epsilon=.001,epsilon_w=10^-6){
+      t1=P[2]
+	t2=-P[4]
+	t3=P[4]*log(P[3])
+	t4=P[1]
+	T=c(t1,t2,t3,t4)
       X=c(LB,LB+(UB-LB)/3,LB+2*(UB-LB)/3,UB)
       W=rep(1/4,3)
       n=1
       p=1
-
+	e1=epsilon_w
+	e2=epsilon
+	dt=delta
+	q1=lambda[1]
+	q2=lambda[2]
+	q3=1-q1-q2
+	nit=r
+	gr=grid
       ginv <- function(X, tol = sqrt(.Machine$double.eps)) {
           dnx <- dimnames(X)
           if (is.null(dnx)) 
@@ -106,8 +117,8 @@ function(LB, UB, nit, T, q1, q2, dt){
           diff=10
           k=length(X)
           W=rep(1/k,k-1)
-          while(diff>.000000001) {
-                d=.2
+          while(diff>e1) {
+                d=1
                 NW=D_weight(W,T,X,d)
                 minW=min(min(NW),1-sum(NW))
                 while(minW<0 & d>.0001) {
@@ -118,12 +129,14 @@ function(LB, UB, nit, T, q1, q2, dt){
                 NW=c(NW,1-sum(NW))
                 n=length(NW)
                 minW=min(NW)
-                if (minW<0) {
+                diff=max(abs(W-NW[1:n-1]))
+                if (abs(minW)<.0000001||minW<0) {
                       for(i in 1:n) {
                              if (NW[i]==minW)NW[i]=0
                       }
+           
                 }
-                diff=max(abs(W-NW[1:n-1]))
+               
                 D=rbind(X,NW)
                 for (i in 1:n) {
                       if (D[2,i]==0) D[,i]=NA
@@ -156,7 +169,7 @@ function(LB, UB, nit, T, q1, q2, dt){
       M=upinfor(W,T,X)
 
       while(n<nit){
-            x=seq(LB,UB,.01)
+            x=seq(LB,UB,gr)
             n1=length(x)
             ds=rep(0,n1)
             inv=ginv(M)
@@ -167,7 +180,7 @@ function(LB, UB, nit, T, q1, q2, dt){
                  if(max(ds)==ds[i])x[i]=x[i] else x[i]=NA
             }
             newX=na.omit(x)
-            newX=round(newX,2)
+            newX=round(newX[1],2)
             newds=max(ds)
             an=1/(n+1)
             p<-abs(newds-1)
@@ -178,18 +191,18 @@ function(LB, UB, nit, T, q1, q2, dt){
       }
       r=length(X)
       X=unique(X[(r-4):r])
-      R=S_weight(X,T)
-      X=R[1,]
-      k=length(X)
-      W=R[2,1:k-1]
-
+	X=sort(X,decreasing=F)
       n=1
       p=1
       it=1
-      while(p>.001) {
-            x=seq(LB,UB,.01)
+      while(p>e2) {
+            x=seq(LB,UB,gr)
             n1=length(x)
             ds=rep(0,n1)
+            D=S_weight(X,T)
+            X=D[1,]
+            k=length(X)
+            W=D[2,1:k-1]
             inv=ginv(upinfor(W,T,X)) 
             for (i in 1:n1) {
                   ds[i]=q1*ds1(T,x[i],inv)+q2*ds2(T,x[i],inv)+q3*ds3(T,x[i],inv,dt)
@@ -198,18 +211,14 @@ function(LB, UB, nit, T, q1, q2, dt){
                   if(max(ds)==ds[i])x[i]=x[i] else x[i]=NA
             }
             newX=na.omit(x)
-            newX=round(newX,2)
+            newX=round(newX[1],2)
             newds=max(ds)
             X=c(X,newX)
             X=sort(X,decreasing=F)
             X=unique(X)
-            D=S_weight(X,T)
-            X=D[1,]
-            k=length(X)
-            W=D[2,1:k-1]
             newp<-abs(newds-1)
-            if(abs(newp-p)<.0000001)   newp=.000001
-            if(it>20)   newp=.000001
+            if(abs(newp-p)<.0000001)   newp=10^-20
+            if(it>20)   newp=10^-20
             p=newp
             it=it+1
             print(p)
@@ -219,7 +228,7 @@ function(LB, UB, nit, T, q1, q2, dt){
       X=D[1,]
       n=length(X)
       W=D[2,1:n-1]
-      x=seq(LB,UB,.01)
+      x=seq(LB,UB,gr)
       n1=length(x)
       ds=rep(0,n1)
       inv=ginv(upinfor(W,T,X))

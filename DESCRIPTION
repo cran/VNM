@@ -1,13 +1,14 @@
 Package: VNM
 Type: Package
-Title: Multiple objective optimal design.
-Version: 1.0
-Date: 2014-05-15
+Title: Using V-algorithm and Newton-Raphson Method to Obtain
+        Multiple-objective Optimal Design
+Version: 2.0
+Date: 2014-10-31
 Author: Seung Won Hyun, Weng Kee Wong, and Yarong Yang
 Maintainer: Yarong Yang <Yarong.Yang@ndsu.edu>
-Description: This package implements algorithms that use V-algorithm and Newton Raphson algorithm to find Multiple-objectives optimal design for estimating three objectives: estimating model parameters; estimating ED50; estimating the minimum effective dose (MED).
+Description: Using V-algorithm and Newton-Raphson method to obtain multiple-objective optimal design for estimating the shape of dose-response, the ED50 (the dose producing an effect mid-way between the expected responses at the extreme doses) and the MED (the minimum effective dose level) for the 4-parameter logistic model and for evaluating its efficiencies for the three objectives. 
 License: GPL-2
-Packaged: 2014-05-16 20:41:51 UTC; yarong.yang
+Packaged: 2014-10-31 20:27:34 UTC; yarong.yang
 NeedsCompilation: no
 Repository: CRAN
-Date/Publication: 2014-05-17 01:28:58
+Date/Publication: 2014-11-01 00:43:53
