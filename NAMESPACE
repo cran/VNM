@@ -1,1 +1,13 @@
-exportPattern("^[[:alpha:]]+")
+import(methods, graphics)
+
+export(
+ "MOPT",
+ "ceff1",
+ "ceff2",
+ "Deff",
+ "S.Weight"
+)
+
+exportClasses(OPT, SW)
+exportMethods(plot,summary)
+

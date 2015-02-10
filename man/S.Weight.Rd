@@ -14,7 +14,7 @@ S.Weight(X,P,lambda,delta,epsilon_w)
   \item{delta}{ Numeric. Predetermined clinically significant effect to define the MED. The MED is the dose producing the mean response of dt units better than the minimum dose.}
   \item{epsilon_w}{ Numeric. Stopping criterion for the Newton Raphson method to search the optimal weights for the given dose levels. Default is 10^-6.}
 } 
-\value{ 1. A matrix showing the optimal weights for the specified X. The first row represents the given dose levels and the second row represents the obtained optimal weights. The matrix only shows the dose levels with non-zero optimal weights (i.e., dose levels with obtained optimal weights are equal to 0 are eliminated from the matrix); 2. The first derivative of the optimality criterion w.r.t weights; 3. The second derivative of the optimality criterion w.r.t weights.}
+\value{An object of class SW.}
 \author{Seung Won Hyun, Weng Kee Wong, and Yarong Yang }
 \references{Seung Won Hyun, Weng Kee Wong, and Yarong Yang (2014), VNM: An R Package for Finding Multiple-Objective Optimal Designs for the 4-Parameter Logistic Model, submitted to Journal of Statistical Software.
 

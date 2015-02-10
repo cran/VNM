@@ -1,11 +1,19 @@
-S.Weight <-
-function(X,P,lambda,delta,epsilon_w=10^-6)
+S.Weight<-function(X,P,lambda,delta,epsilon_w=10^-6)
 {
-      t1=P[2]
-      t2=-P[4]
-      t3=P[4]*log(P[3])
-      t4=P[1]
-      T=c(t1,t2,t3,t4)
+	np=length(P)
+	if (np==2)
+	{t1=-P[2]
+	 t2=P[2]*log(P[1])
+	 T=c(1,t1,t2,0)} else if(np==3)
+	 {t1=P[1]
+	  t2=-P[3]
+	  t3=P[3]*log(P[2])
+	  T=c(t1,t2,t3,0)} else
+      {t1=P[2]
+	   t2=-P[4]
+	   t3=P[4]*log(P[3])
+	   t4=P[1]
+	   T=c(t1,t2,t3,t4)}
       e=epsilon_w
 	dt=delta
 	q1=lambda[1]
@@ -22,10 +30,30 @@ function(X,P,lambda,delta,epsilon_w=10^-6)
                 dimnames = dnx[2:1])
       }
 
-      infor<-function(T,X) {
-           f=matrix(c(1/(1+exp(T[2]*X+T[3])),(-T[1]*X*exp(T[2]*X+T[3]))/(1+exp(T[2]*X+T[3]))^2,(-T[1]*exp(T[2]*X+T[3]))/(1+exp(T[2]*X+T[3]))^2,1),nrow=4,ncol=1,byrow=F)
-           f%*%t(f)
+      infor2 <- function(T, X) {
+          f = matrix(c(exp(1/2*(T[2] * X + T[3]))/(1 + exp(T[2] * X + T[3])),X*exp(1/2*(T[2] * X + T[3]))/
+          (1 + exp(T[2] *X + T[3]))), nrow = 2, ncol = 1, byrow = F)
+          f %*% t(f)
+      }     
+      infor3 <- function(T, X) {
+          f = matrix(c(1/(1 + exp(T[2] * X + T[3])), (-T[1] * X * 
+              exp(T[2] * X + T[3]))/(1 + exp(T[2] * X + T[3]))^2, 
+              (-T[1] * exp(T[2] * X + T[3]))/(1 + exp(T[2] * X + 
+                T[3]))^2), nrow = 3, ncol = 1, byrow = F)
+          f %*% t(f)
       }
+      infor4 <- function(T, X) {
+          f = matrix(c(1/(1 + exp(T[2] * X + T[3])), (-T[1] * X * 
+              exp(T[2] * X + T[3]))/(1 + exp(T[2] * X + T[3]))^2, 
+              (-T[1] * exp(T[2] * X + T[3]))/(1 + exp(T[2] * X + 
+                T[3]))^2, 1), nrow = 4, ncol = 1, byrow = F)
+          f %*% t(f)
+      }
+ 
+      infor <- function(T,X){
+      	if(np==2) {infor2(T,X)} else if (np==3)
+      	{infor3(T,X)} else {infor4(T,X)}}
+
 
       upinfor<-function(W,T,X) {
            k=length(X)
@@ -36,17 +64,29 @@ function(X,P,lambda,delta,epsilon_w=10^-6)
            infor
       }
 
-      g21<-function(T,dt) 
-           matrix(c(1/((T[1]-dt)*T[2]),(-log((T[1]-dt)/dt)+T[3])/T[2]^2,-1/T[2],0),nrow=4,ncol=1,byrow=F)
+      g21<-function(T,dt) {
+          matrix(c(1/((T[1]-dt)*T[2]),(-log((T[1]-dt)/dt)+T[3])/T[2]^2,-1/T[2],0),nrow=4,ncol=1,byrow=F)
+      }
 
-      g22<-function(T,dt) 
-           matrix(c(-1/((T[1]+dt)*T[2]),(-log(-dt/(T[1]+dt))+T[3])/T[2]^2,-1/T[2],0),nrow=4,ncol=1,byrow=F)
+      g22<-function(T,dt) {
+          matrix(c(-1/((T[1]+dt)*T[2]),(-log(-dt/(T[1]+dt))+T[3])/T[2]^2,-1/T[2],0),nrow=4,ncol=1,byrow=F)
+      }
 
-      g1<-function(T) 
-           matrix(c(0,-T[3]/(T[2])^2,-1/T[2],0),nrow=4,ncol=1,byrow=F)
+      tg1<-function(T) {
+          matrix(c(0,-T[3]/(T[2])^2,-1/T[2],0),nrow=4,ncol=1,byrow=F)
+      } 
+      g1<-function(T){tempT=tg1(T)
+      	    if (np==2) {matrix(c(tempT[2],tempT[3]),nrow=2,ncol=1,byrow=F)}else if
+      	    (np==3){matrix(c(0,tempT[2],tempT[3]),nrow=3,ncol=1,byrow=F)}else
+      	    {tempT}}
 
-      g2<-function(T, dt) 
-           if(T[2]<0) g21(T,dt) else g22(T,dt)
+      tg2<-function(T, dt) {
+          if(T[2]<0) g21(T,dt) else g22(T,dt)
+      }    
+	g2<-function(T,dt){tempT=tg2(T,dt)
+      	    if (np==2) {matrix(c(tempT[2],tempT[3]),nrow=2,ncol=1,byrow=F)}else if
+      	    (np==3){matrix(c(tempT[1],tempT[2],tempT[3]),nrow=3,ncol=1,byrow=F)}else
+      	    {tempT}}
      
       d1<-function(T,X,XL,inv)
            sum(diag(inv%*%(infor(T,X)-infor(T,XL))))
@@ -85,11 +125,11 @@ function(X,P,lambda,delta,epsilon_w=10^-6)
            f1=rep(0,p)
            f2=matrix(c(rep(f1,p)),nrow=p,ncol=p,byrow=F)
            for (i in 1:p) 
-                f1[i]=q1*d1(T,X[i],X[k],inv)/4-q2*d2(T,X[i],X[k],inv)-q3*d3(T,X[i],X[k],inv,dt)
+                f1[i]=q1*d1(T,X[i],X[k],inv)/np-q2*d2(T,X[i],X[k],inv)-q3*d3(T,X[i],X[k],inv,dt)
 
            for(i in 1:p) 
                 for(j in 1:p) 
-                     f2[i,j]=q1*dd1(T,X[i],X[j],X[k],inv)/4-q2*dd2(T,X[i],X[j],X[k],inv)-q3*dd3(T,X[i],X[j],X[k],inv,dt)
+                     f2[i,j]=q1*dd1(T,X[i],X[j],X[k],inv)/np-q2*dd2(T,X[i],X[j],X[k],inv)-q3*dd3(T,X[i],X[j],X[k],inv,dt)
 
            newweight=W-d*(f1%*%ginv(f2))
            newweight
@@ -100,7 +140,7 @@ function(X,P,lambda,delta,epsilon_w=10^-6)
       W=rep(1/k,k-1)
 
       while(diff>e) {
-           d=.2
+           d=1
            NW=D_weight(W,T,X,d)
            minW=min(min(NW),1-sum(NW))
            while(minW<0 & d>.0001) {
@@ -128,8 +168,8 @@ function(X,P,lambda,delta,epsilon_w=10^-6)
       }
       W=c(W,1-sum(W))
       D=rbind(X,W)
-      cat("Optimal weights", "\n")
-      print(D)
+      #cat("Optimal weights", "\n")
+      #print(D)
       k=ncol(D)
       W=D[2,1:k-1]
       X=D[1,]
@@ -145,8 +185,7 @@ function(X,P,lambda,delta,epsilon_w=10^-6)
            for(j in 1:p)
                  f2[i,j]=q1*dd1(T,X[i],X[j],X[k],inv)/4-q2*dd2(T,X[i],X[j],X[k],inv)-q3*dd3(T,X[i],X[j],X[k],inv,dt)
      
-      cat("The first derivative of the criterion", "\n")
-      print(f1)
-      cat("The second derivative of the criterion", "\n")
-      print(diag(f2))
+      return(new("SW",Opt.W=D,First.C=f1,Second.C=diag(f2)))
 }
+      
+
