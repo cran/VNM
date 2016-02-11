@@ -18,7 +18,7 @@ S.Weight(X,P,lambda,delta,epsilon_w)
 \author{Seung Won Hyun, Weng Kee Wong, and Yarong Yang }
 \references{Seung Won Hyun, Weng Kee Wong, and Yarong Yang (2014), VNM: An R Package for Finding Multiple-Objective Optimal Designs for the 4-Parameter Logistic Model, submitted to Journal of Statistical Software.
 
-Seung Won Hyun and Weng Kee Wong (2014), Multiple Objective Optimal Designs to Study the Interesting Features in a Dose-Response Relationship, submitted to the International Journal of Biostatistics.
+Seung Won Hyun and Weng Kee Wong (2015), Multiple Objective Optimal Designs to Study the Interesting Features in a Dose-Response Relationship, accepted by the International Journal of Biostatistics.
 }
 \examples{
    S.Weight(X=c(-6.91, 2.22, 3.75, 4.60),P=c(22,16.8,70,1),lambda=c(1/3,1/3),delta=5)

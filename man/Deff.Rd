@@ -22,7 +22,7 @@ Deff(weight,P,dose,LB,UB,r,grid,epsilon,epsilon_w)
 \author{Seung Won Hyun, Weng Kee Wong, and Yarong Yang }
 \references{Seung Won Hyun, Weng Kee Wong, and Yarong Yang (2014), VNM: An R Package for Finding Multiple-Objective Optimal Designs for the 4-Parameter Logistic Model, submitted to Journal of Statistical Software.
 
-Seung Won Hyun and Weng Kee Wong (2014), Multiple Objective Optimal Designs to Study the Interesting Features in a Dose-Response Relationship, submitted to the International Journal of Biostatistics.
+Seung Won Hyun and Weng Kee Wong (2015), Multiple Objective Optimal Designs to Study the Interesting Features in a Dose-Response Relationship, accepted by the International Journal of Biostatistics.
 }
 \examples{
   Deff(weight=c(0.314,0.275,0.307,0.104),P=c(60,340,107.14,1),

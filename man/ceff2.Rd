@@ -23,10 +23,7 @@ ceff2(weight,P,dose,LB,UB,delta,r,grid,epsilon,epsilon_w)
 \author{Seung Won Hyun, Weng Kee Wong, and Yarong Yang }
 \references{Seung Won Hyun, Weng Kee Wong, and Yarong Yang (2014), VNM: An R Package for Finding Multiple-Objective Optimal Designs for the 4-Parameter Logistic Model, submitted to Journal of Statistical Software.
 
-Seung Won Hyun and Weng Kee Wong (2014), Multiple Objective Optimal Designs to Study the Interesting Features in a Dose-Response Relationship, submitted to the International Journal of Biostatistics.
+Seung Won Hyun and Weng Kee Wong (2015), Multiple Objective Optimal Designs to Study the Interesting Features in a Dose-Response Relationship, accepted by the International Journal of Biostatistics.
 }
-\examples{
-  ceff2(weight=c(0.25,0.25,0.25,0.25),P=c(exp(-1/3),3),
-dose=c(-1,-.5,.5,1),LB=-1,UB=1,delta=.2,r=10)
-}
+
 
