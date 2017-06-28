@@ -1,5 +1,5 @@
 \name{SW}
-\Rdversion{1.1}
+\Rdversion{5.1}
 \docType{class}
 \alias{SW-class}
 \alias{summary,SW-method}
@@ -22,10 +22,6 @@ new("SW",Opt.W=new("matrix"),First.C=new("vector"),Second.C=new("vector"))
   \describe{
     \item{summary}{\code{signature(object = "SW")}: ... }
 	 }
-}
-\references{Seung Won Hyun, Weng Kee Wong, and Yarong Yang (2014), VNM: An R Package for Finding Multiple-Objective Optimal Designs for the 4-Parameter Logistic Model, submitted to Journal of Statistical Software.
-
-Seung Won Hyun and Weng Kee Wong (2015), Multiple Objective Optimal Designs to Study the Interesting Features in a Dose-Response Relationship, accepted by the International Journal of Biostatistics.
 }
 \author{
 Seung Won Hyun, Weng Kee Wong, and Yarong Yang

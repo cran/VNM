@@ -282,13 +282,12 @@ NumericMatrix upinfor(NumericVector W, NumericVector T, NumericVector X, int ord
 {
     NumericMatrix last_infor=infor234(T,X[X.size()-1],order);
     NumericMatrix infor=sMultiple(1-sum(W),last_infor);
-
+    
     for(int i=0;i<X.size()-1;i++)
         infor=Plus(infor,sMultiple(W[i],infor234(T,X[i],order)));
-
+    
     return infor;
 }
-
 
 // [[Rcpp::export]]
 

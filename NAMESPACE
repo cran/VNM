@@ -1,6 +1,7 @@
 import(methods, graphics)
-useDynLib(VNM)
+useDynLib(VNM,.registration=TRUE)
 importFrom(Rcpp, sourceCpp)
+importFrom("stats", "na.omit", "runif")
 
 export(
  "MOPT",
@@ -11,7 +12,7 @@ export(
 )
 
 exportClasses(OPT, SW)
-importFrom("stats", "na.omit", "runif")
 exportMethods(plot,summary)
+
 
 

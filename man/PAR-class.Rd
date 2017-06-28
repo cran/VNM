@@ -1,5 +1,5 @@
 \name{PAR}
-\Rdversion{1.1}
+\Rdversion{5.1}
 \docType{class}
 \alias{PAR-class}
 
@@ -19,10 +19,6 @@ new("PAR",fid="character",LB="numeric",UB="numeric",grid="numeric",ds="vector")
     \item{\code{grid}:}{A numeric number showing the grid density to discretize the predetermined dose interval.}
     \item{\code{ds}:}{A numeric vector represents the values of criterion (an absolute value of the difference between the sensitivity function and 1) computed at each iteration. }
   }
-}
-\references{Seung Won Hyun, Weng Kee Wong, and Yarong Yang (2014), VNM: An R Package for Finding Multiple-Objective Optimal Designs for the 4-Parameter Logistic Model, submitted to Journal of Statistical Software.
-
-Seung Won Hyun and Weng Kee Wong (2015), Multiple Objective Optimal Designs to Study the Interesting Features in a Dose-Response Relationship, accepted by the International Journal of Biostatistics.
 }
 \author{
 Seung Won Hyun, Weng Kee Wong, and Yarong Yang

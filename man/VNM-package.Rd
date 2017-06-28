@@ -1,28 +1,61 @@
 \name{VNM-package}
+\Rdversion{5.1}
 \alias{VNM-package}
 \docType{package}
-\title{ Using V-algorithm and Newton-Raphson Method to Obtain Multiple-objective Optimal Design.}
-\description{Using V-algorithm and Newton-Raphson method to obtain multiple-objective optimal design for estimating the shape of dose-response, the ED50 (the dose producing an effect midway between the expected responses at the extreme doses) and the MED (the minimum effective dose level) 
-for the 2,3,4-parameter logistic models and for evaluating its efficiencies for the three objectives.
+\title{ Tools for constructing 3-objective optimal designs}
+\description{The package contains several functions useful for finding 3-objective optimal designs to estimate the shape of dose-response, the ED50
+	and the MED for the 4PL model. The package also can be used for the 2PL or the 3PL models.
+	
+	Below is the 4PL model used in this package:
+	
+	\bold{4-parameter logistic(4PL) model}
+	\deqn{Y=\frac{\theta_1}{1+e^{\theta_2{x}+\theta_3}}+\theta_4+\varepsilon, \varepsilon \sim N(0,\sigma^{2})}
+    Here \eqn{x} is the dose in log scale, \eqn{\theta_1} is the Emax, \eqn{\theta_2} is the negative of the Hill's coefficient in the Hill's model that controls the rate of change in the response, \eqn{\theta_3} is \eqn{-\theta_2} log(ED50) and \eqn{\theta_4} is the lower limit of the response when \eqn{\theta_1 >0, \theta_2 \neq  0}, and \eqn{-\infty <} ED50 \eqn{< \infty}. The 4PL model becomes the 2PL model when \eqn{\theta_1 = 1} and \eqn{\theta_4 = 0} or the 3PL model when \eqn{\theta_4 = 0}.
+    
 }
+	
 \details{
 \tabular{ll}{
 Package: \tab VNM\cr
 Type: \tab Package\cr
-Version: \tab 1.0.1\cr
-Date: \tab 2016-01-15\cr
+Version: \tab 1.0 \cr
+Date: \tab 2014-05-15\cr
 License: \tab GPL-2\cr
 }
- }
-\author{ Seung Won Hyun, Weng Kee Wong, and Yarong Yang  }
-\references{Seung Won Hyun, Weng Kee Wong, and Yarong Yang (2014), VNM: An R Package for Finding Multiple-Objective Optimal Designs for the 4-Parameter Logistic Model, submitted to Journal of Statistical Software.
 
-Seung Won Hyun and Weng Kee Wong (2015), Multiple Objective Optimal Designs to Study the Interesting Features in a Dose-Response Relationship, accepted by the International Journal of Biostatistics.
+The main functions are:
+
+\itemize{
+	
+\bold{MOPT:} Finds and verifies that the generated design is the multiple-objective optimal design.
+	
+\bold{Deff:} Computes D-efficiency of the generated design for estimating the model parameters.
+	
+\bold{ceff1:} Computes c-efficiency of the generated design for estimating the ED50.
+	
+\bold{ceff2:} Computes c-efficiency of the generated design for estimating the MED.
+	
+\bold{S.Weight:} Computes the optimal weights for the fixed design points.
 }
 
-\keyword{package }
+}
+ 
+\author{ Seung Won Hyun, Weng Kee Wong, and Yarong Yang  }
+\references{Hyun, S.W., Wong, W.K, Yang, Y. VNM: An R Package for Finding Multiple-Objective Optimal Designs for the 4-Parameter Logistic Model. (Conditionally accepted for publication, \emph{Journal of Statistical Software})
+
+Hyun, S. W., Wong, W.K. Multiple-Objective Optimal Designs for Studying the Dose Response Function and Interesting Dose Levels. (\emph{International Journal of Biostatistics}, 11, 253-271, 2015)
+}
+
+\keyword{package}
 
 \examples{
-MOPT(LB = -1, UB = 1, P = c(exp(-1/3),3),lambda = c(1/3,1/3), 
-delta = 0.2, r = 10,grid=.01, verbose=TRUE)
+##Find the 3-objective optimal design for the 4PL model
+result=MOPT(LB=log(.001), UB=log(1000), P=c(0.137,1.563,.00895,-1.790),lambda=c(1/3,1/3),
+delta=-1)
+
+##Generated the 3-objective optimal design
+Res.D=summary(result)
+
+##Verification plot of the generated design
+plot(result)
 }
