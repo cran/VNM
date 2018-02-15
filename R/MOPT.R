@@ -34,7 +34,7 @@ MOPT<-function(LB,UB,P,lambda,delta,r=10,grid=0.01,epsilon=.001,epsilon_w=10^-6,
 
       it <- 1
 
-      cat("Computing maximum value of the sensitvity function...","\n")
+      cat("Computing maximum value of the sensitivity function...","\n")
       while(p>epsilon) {
             x <- seq(LB,UB,grid)
             n1 <- length(x)

@@ -1,5 +1,5 @@
 \name{VNM-package}
-\Rdversion{5.1}
+\Rdversion{6.1}
 \alias{VNM-package}
 \docType{package}
 \title{ Tools for constructing 3-objective optimal designs}
@@ -41,9 +41,9 @@ The main functions are:
 }
  
 \author{ Seung Won Hyun, Weng Kee Wong, and Yarong Yang  }
-\references{Hyun, S.W., Wong, W.K, Yang, Y. VNM: An R Package for Finding Multiple-Objective Optimal Designs for the 4-Parameter Logistic Model. (Conditionally accepted for publication, \emph{Journal of Statistical Software})
-
-Hyun, S. W., Wong, W.K. Multiple-Objective Optimal Designs for Studying the Dose Response Function and Interesting Dose Levels. (\emph{International Journal of Biostatistics}, 11, 253-271, 2015)
+\references{Hyun, S.W., Wong, W.K, Yang, Y. VNM: An R Package for Finding Multiple-Objective Optimal Designs for the 4-Parameter Logistic Model. (\emph{Journal of Statistical Software}, 83, 1-19, 2018, doi: 10.18637/jss.v083.i05.)
+		
+	Hyun, S. W., Wong, W.K. Multiple-Objective Optimal Designs for Studying the Dose Response Function and Interesting Dose Levels. (\emph{International Journal of Biostatistics}, 11, 253-271, 2015)
 }
 
 \keyword{package}
@@ -58,4 +58,16 @@ Res.D=summary(result)
 
 ##Verification plot of the generated design
 plot(result)
+
+dose=Res.D[1,]
+weight=Res.D[2,]
+
+##Check D-efficiency of the generated design
+Deff(weight, P=c(0.137,1.563,.00895,-1.790), dose, LB=log(.001), UB=log(1000))
+
+##Check c-efficiency of the generated design for estimating the ED50
+#ceff1(weight, P=c(0.137,1.563,.00895,-1.790), dose, LB=log(.001), UB=log(1000))
+
+##Check c-efficency of the generated design for estimating the MED
+#ceff2(weight, P=c(0.137,1.563,.00895,-1.790), dose, LB=log(.001), UB=log(1000), delta=-1, r=30)
 }

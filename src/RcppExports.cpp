@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // g1
 NumericMatrix g1(NumericVector T, int order);
-RcppExport SEXP VNM_g1(SEXP TSEXP, SEXP orderSEXP) {
+RcppExport SEXP _VNM_g1(SEXP TSEXP, SEXP orderSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -19,7 +19,7 @@ END_RCPP
 }
 // g2
 NumericMatrix g2(NumericVector T, double dt, int order);
-RcppExport SEXP VNM_g2(SEXP TSEXP, SEXP dtSEXP, SEXP orderSEXP) {
+RcppExport SEXP _VNM_g2(SEXP TSEXP, SEXP dtSEXP, SEXP orderSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -32,7 +32,7 @@ END_RCPP
 }
 // f234
 NumericMatrix f234(NumericVector T, double x, int order);
-RcppExport SEXP VNM_f234(SEXP TSEXP, SEXP xSEXP, SEXP orderSEXP) {
+RcppExport SEXP _VNM_f234(SEXP TSEXP, SEXP xSEXP, SEXP orderSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -45,7 +45,7 @@ END_RCPP
 }
 // SDM
 double SDM(NumericMatrix M);
-RcppExport SEXP VNM_SDM(SEXP MSEXP) {
+RcppExport SEXP _VNM_SDM(SEXP MSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -56,7 +56,7 @@ END_RCPP
 }
 // Trans
 NumericMatrix Trans(NumericMatrix M);
-RcppExport SEXP VNM_Trans(SEXP MSEXP) {
+RcppExport SEXP _VNM_Trans(SEXP MSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -67,7 +67,7 @@ END_RCPP
 }
 // Minus
 NumericMatrix Minus(NumericMatrix M1, NumericMatrix M2);
-RcppExport SEXP VNM_Minus(SEXP M1SEXP, SEXP M2SEXP) {
+RcppExport SEXP _VNM_Minus(SEXP M1SEXP, SEXP M2SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -79,7 +79,7 @@ END_RCPP
 }
 // Plus
 NumericMatrix Plus(NumericMatrix M1, NumericMatrix M2);
-RcppExport SEXP VNM_Plus(SEXP M1SEXP, SEXP M2SEXP) {
+RcppExport SEXP _VNM_Plus(SEXP M1SEXP, SEXP M2SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -91,7 +91,7 @@ END_RCPP
 }
 // Multiple
 NumericMatrix Multiple(NumericMatrix M1, NumericMatrix M2);
-RcppExport SEXP VNM_Multiple(SEXP M1SEXP, SEXP M2SEXP) {
+RcppExport SEXP _VNM_Multiple(SEXP M1SEXP, SEXP M2SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -103,7 +103,7 @@ END_RCPP
 }
 // infor234
 NumericMatrix infor234(NumericVector T, double x, int order);
-RcppExport SEXP VNM_infor234(SEXP TSEXP, SEXP xSEXP, SEXP orderSEXP) {
+RcppExport SEXP _VNM_infor234(SEXP TSEXP, SEXP xSEXP, SEXP orderSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -116,7 +116,7 @@ END_RCPP
 }
 // d1
 double d1(NumericVector T, double x, double xl, NumericMatrix inv, int order);
-RcppExport SEXP VNM_d1(SEXP TSEXP, SEXP xSEXP, SEXP xlSEXP, SEXP invSEXP, SEXP orderSEXP) {
+RcppExport SEXP _VNM_d1(SEXP TSEXP, SEXP xSEXP, SEXP xlSEXP, SEXP invSEXP, SEXP orderSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -131,7 +131,7 @@ END_RCPP
 }
 // d2
 double d2(NumericVector T, double x, double xl, NumericMatrix inv, int order);
-RcppExport SEXP VNM_d2(SEXP TSEXP, SEXP xSEXP, SEXP xlSEXP, SEXP invSEXP, SEXP orderSEXP) {
+RcppExport SEXP _VNM_d2(SEXP TSEXP, SEXP xSEXP, SEXP xlSEXP, SEXP invSEXP, SEXP orderSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -146,7 +146,7 @@ END_RCPP
 }
 // d3
 double d3(NumericVector T, double x, double xl, NumericMatrix inv, double dt, int order);
-RcppExport SEXP VNM_d3(SEXP TSEXP, SEXP xSEXP, SEXP xlSEXP, SEXP invSEXP, SEXP dtSEXP, SEXP orderSEXP) {
+RcppExport SEXP _VNM_d3(SEXP TSEXP, SEXP xSEXP, SEXP xlSEXP, SEXP invSEXP, SEXP dtSEXP, SEXP orderSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -162,7 +162,7 @@ END_RCPP
 }
 // dd1
 double dd1(NumericVector T, double x1, double x2, double xl, NumericMatrix inv, int order);
-RcppExport SEXP VNM_dd1(SEXP TSEXP, SEXP x1SEXP, SEXP x2SEXP, SEXP xlSEXP, SEXP invSEXP, SEXP orderSEXP) {
+RcppExport SEXP _VNM_dd1(SEXP TSEXP, SEXP x1SEXP, SEXP x2SEXP, SEXP xlSEXP, SEXP invSEXP, SEXP orderSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -178,7 +178,7 @@ END_RCPP
 }
 // dd2
 double dd2(NumericVector T, double x1, double x2, double xl, NumericMatrix inv, int order);
-RcppExport SEXP VNM_dd2(SEXP TSEXP, SEXP x1SEXP, SEXP x2SEXP, SEXP xlSEXP, SEXP invSEXP, SEXP orderSEXP) {
+RcppExport SEXP _VNM_dd2(SEXP TSEXP, SEXP x1SEXP, SEXP x2SEXP, SEXP xlSEXP, SEXP invSEXP, SEXP orderSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -194,7 +194,7 @@ END_RCPP
 }
 // dd3
 double dd3(NumericVector T, double x1, double x2, double xl, NumericMatrix inv, double dt, int order);
-RcppExport SEXP VNM_dd3(SEXP TSEXP, SEXP x1SEXP, SEXP x2SEXP, SEXP xlSEXP, SEXP invSEXP, SEXP dtSEXP, SEXP orderSEXP) {
+RcppExport SEXP _VNM_dd3(SEXP TSEXP, SEXP x1SEXP, SEXP x2SEXP, SEXP xlSEXP, SEXP invSEXP, SEXP dtSEXP, SEXP orderSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -211,7 +211,7 @@ END_RCPP
 }
 // ds1
 double ds1(NumericVector T, double x, NumericMatrix inv, int order);
-RcppExport SEXP VNM_ds1(SEXP TSEXP, SEXP xSEXP, SEXP invSEXP, SEXP orderSEXP) {
+RcppExport SEXP _VNM_ds1(SEXP TSEXP, SEXP xSEXP, SEXP invSEXP, SEXP orderSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -225,7 +225,7 @@ END_RCPP
 }
 // ds2
 double ds2(NumericVector T, double x, NumericMatrix inv, int order);
-RcppExport SEXP VNM_ds2(SEXP TSEXP, SEXP xSEXP, SEXP invSEXP, SEXP orderSEXP) {
+RcppExport SEXP _VNM_ds2(SEXP TSEXP, SEXP xSEXP, SEXP invSEXP, SEXP orderSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -239,7 +239,7 @@ END_RCPP
 }
 // ds3
 double ds3(NumericVector T, double x, NumericMatrix inv, double dt, int order);
-RcppExport SEXP VNM_ds3(SEXP TSEXP, SEXP xSEXP, SEXP invSEXP, SEXP dtSEXP, SEXP orderSEXP) {
+RcppExport SEXP _VNM_ds3(SEXP TSEXP, SEXP xSEXP, SEXP invSEXP, SEXP dtSEXP, SEXP orderSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -254,7 +254,7 @@ END_RCPP
 }
 // sMultiple
 NumericMatrix sMultiple(double s, NumericMatrix M);
-RcppExport SEXP VNM_sMultiple(SEXP sSEXP, SEXP MSEXP) {
+RcppExport SEXP _VNM_sMultiple(SEXP sSEXP, SEXP MSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -266,7 +266,7 @@ END_RCPP
 }
 // upinfor
 NumericMatrix upinfor(NumericVector W, NumericVector T, NumericVector X, int order);
-RcppExport SEXP VNM_upinfor(SEXP WSEXP, SEXP TSEXP, SEXP XSEXP, SEXP orderSEXP) {
+RcppExport SEXP _VNM_upinfor(SEXP WSEXP, SEXP TSEXP, SEXP XSEXP, SEXP orderSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -280,7 +280,7 @@ END_RCPP
 }
 // c1_weight_1
 NumericVector c1_weight_1(NumericVector W, NumericVector T, NumericVector X, NumericMatrix inv, int order);
-RcppExport SEXP VNM_c1_weight_1(SEXP WSEXP, SEXP TSEXP, SEXP XSEXP, SEXP invSEXP, SEXP orderSEXP) {
+RcppExport SEXP _VNM_c1_weight_1(SEXP WSEXP, SEXP TSEXP, SEXP XSEXP, SEXP invSEXP, SEXP orderSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -295,7 +295,7 @@ END_RCPP
 }
 // c1_weight_2
 NumericMatrix c1_weight_2(NumericVector W, NumericVector T, NumericVector X, NumericMatrix inv, int order);
-RcppExport SEXP VNM_c1_weight_2(SEXP WSEXP, SEXP TSEXP, SEXP XSEXP, SEXP invSEXP, SEXP orderSEXP) {
+RcppExport SEXP _VNM_c1_weight_2(SEXP WSEXP, SEXP TSEXP, SEXP XSEXP, SEXP invSEXP, SEXP orderSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -310,7 +310,7 @@ END_RCPP
 }
 // c_weight_1
 NumericVector c_weight_1(NumericVector W, NumericVector T, NumericVector X, NumericMatrix inv, double dt, int order);
-RcppExport SEXP VNM_c_weight_1(SEXP WSEXP, SEXP TSEXP, SEXP XSEXP, SEXP invSEXP, SEXP dtSEXP, SEXP orderSEXP) {
+RcppExport SEXP _VNM_c_weight_1(SEXP WSEXP, SEXP TSEXP, SEXP XSEXP, SEXP invSEXP, SEXP dtSEXP, SEXP orderSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -326,7 +326,7 @@ END_RCPP
 }
 // c_weight_2
 NumericMatrix c_weight_2(NumericVector W, NumericVector T, NumericVector X, NumericMatrix inv, double dt, int order);
-RcppExport SEXP VNM_c_weight_2(SEXP WSEXP, SEXP TSEXP, SEXP XSEXP, SEXP invSEXP, SEXP dtSEXP, SEXP orderSEXP) {
+RcppExport SEXP _VNM_c_weight_2(SEXP WSEXP, SEXP TSEXP, SEXP XSEXP, SEXP invSEXP, SEXP dtSEXP, SEXP orderSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -342,7 +342,7 @@ END_RCPP
 }
 // D_weight_1
 NumericVector D_weight_1(NumericVector W, NumericVector T, NumericVector X, NumericMatrix inv, int order);
-RcppExport SEXP VNM_D_weight_1(SEXP WSEXP, SEXP TSEXP, SEXP XSEXP, SEXP invSEXP, SEXP orderSEXP) {
+RcppExport SEXP _VNM_D_weight_1(SEXP WSEXP, SEXP TSEXP, SEXP XSEXP, SEXP invSEXP, SEXP orderSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -357,7 +357,7 @@ END_RCPP
 }
 // D_weight_2
 NumericMatrix D_weight_2(NumericVector W, NumericVector T, NumericVector X, NumericMatrix inv, int order);
-RcppExport SEXP VNM_D_weight_2(SEXP WSEXP, SEXP TSEXP, SEXP XSEXP, SEXP invSEXP, SEXP orderSEXP) {
+RcppExport SEXP _VNM_D_weight_2(SEXP WSEXP, SEXP TSEXP, SEXP XSEXP, SEXP invSEXP, SEXP orderSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -372,7 +372,7 @@ END_RCPP
 }
 // M_weight_1
 NumericVector M_weight_1(NumericVector W, NumericVector T, NumericVector X, NumericMatrix inv, double dt, int order, NumericVector lambda);
-RcppExport SEXP VNM_M_weight_1(SEXP WSEXP, SEXP TSEXP, SEXP XSEXP, SEXP invSEXP, SEXP dtSEXP, SEXP orderSEXP, SEXP lambdaSEXP) {
+RcppExport SEXP _VNM_M_weight_1(SEXP WSEXP, SEXP TSEXP, SEXP XSEXP, SEXP invSEXP, SEXP dtSEXP, SEXP orderSEXP, SEXP lambdaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -389,7 +389,7 @@ END_RCPP
 }
 // M_weight_2
 NumericMatrix M_weight_2(NumericVector W, NumericVector T, NumericVector X, NumericMatrix inv, double dt, int order, NumericVector lambda);
-RcppExport SEXP VNM_M_weight_2(SEXP WSEXP, SEXP TSEXP, SEXP XSEXP, SEXP invSEXP, SEXP dtSEXP, SEXP orderSEXP, SEXP lambdaSEXP) {
+RcppExport SEXP _VNM_M_weight_2(SEXP WSEXP, SEXP TSEXP, SEXP XSEXP, SEXP invSEXP, SEXP dtSEXP, SEXP orderSEXP, SEXP lambdaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -404,4 +404,51 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rcpp_hello_world
+List rcpp_hello_world();
+RcppExport SEXP _VNM_rcpp_hello_world() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_hello_world());
+    return rcpp_result_gen;
+END_RCPP
+}
 
+static const R_CallMethodDef CallEntries[] = {
+    {"_VNM_g1", (DL_FUNC) &_VNM_g1, 2},
+    {"_VNM_g2", (DL_FUNC) &_VNM_g2, 3},
+    {"_VNM_f234", (DL_FUNC) &_VNM_f234, 3},
+    {"_VNM_SDM", (DL_FUNC) &_VNM_SDM, 1},
+    {"_VNM_Trans", (DL_FUNC) &_VNM_Trans, 1},
+    {"_VNM_Minus", (DL_FUNC) &_VNM_Minus, 2},
+    {"_VNM_Plus", (DL_FUNC) &_VNM_Plus, 2},
+    {"_VNM_Multiple", (DL_FUNC) &_VNM_Multiple, 2},
+    {"_VNM_infor234", (DL_FUNC) &_VNM_infor234, 3},
+    {"_VNM_d1", (DL_FUNC) &_VNM_d1, 5},
+    {"_VNM_d2", (DL_FUNC) &_VNM_d2, 5},
+    {"_VNM_d3", (DL_FUNC) &_VNM_d3, 6},
+    {"_VNM_dd1", (DL_FUNC) &_VNM_dd1, 6},
+    {"_VNM_dd2", (DL_FUNC) &_VNM_dd2, 6},
+    {"_VNM_dd3", (DL_FUNC) &_VNM_dd3, 7},
+    {"_VNM_ds1", (DL_FUNC) &_VNM_ds1, 4},
+    {"_VNM_ds2", (DL_FUNC) &_VNM_ds2, 4},
+    {"_VNM_ds3", (DL_FUNC) &_VNM_ds3, 5},
+    {"_VNM_sMultiple", (DL_FUNC) &_VNM_sMultiple, 2},
+    {"_VNM_upinfor", (DL_FUNC) &_VNM_upinfor, 4},
+    {"_VNM_c1_weight_1", (DL_FUNC) &_VNM_c1_weight_1, 5},
+    {"_VNM_c1_weight_2", (DL_FUNC) &_VNM_c1_weight_2, 5},
+    {"_VNM_c_weight_1", (DL_FUNC) &_VNM_c_weight_1, 6},
+    {"_VNM_c_weight_2", (DL_FUNC) &_VNM_c_weight_2, 6},
+    {"_VNM_D_weight_1", (DL_FUNC) &_VNM_D_weight_1, 5},
+    {"_VNM_D_weight_2", (DL_FUNC) &_VNM_D_weight_2, 5},
+    {"_VNM_M_weight_1", (DL_FUNC) &_VNM_M_weight_1, 7},
+    {"_VNM_M_weight_2", (DL_FUNC) &_VNM_M_weight_2, 7},
+    {"_VNM_rcpp_hello_world", (DL_FUNC) &_VNM_rcpp_hello_world, 0},
+    {NULL, NULL, 0}
+};
+
+RcppExport void R_init_VNM(DllInfo *dll) {
+    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
+    R_useDynamicSymbols(dll, FALSE);
+}

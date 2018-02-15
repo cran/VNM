@@ -21,7 +21,7 @@ ceff1(weight,P,dose,LB,UB,r,grid,epsilon,epsilon_w)
 }
 \value{An object of class OPT.}
 \author{Seung Won Hyun, Weng Kee Wong, and Yarong Yang }
-\references{Hyun, S.W., Wong, W.K, Yang, Y. VNM: An R Package for Finding Multiple-Objective Optimal Designs for the 4-Parameter Logistic Model. (Conditionally accepted for publication, \emph{Journal of Statistical Software})
+\references{Hyun, S.W., Wong, W.K, Yang, Y. VNM: An R Package for Finding Multiple-Objective Optimal Designs for the 4-Parameter Logistic Model. (\emph{Journal of Statistical Software}, 83, 1-19, 2018, doi: 10.18637/jss.v083.i05.)
 
 Hyun, S. W., Wong, W.K. Multiple-Objective Optimal Designs for Studying the Dose Response Function and Interesting Dose Levels. (\emph{International Journal of Biostatistics}, 11, 253-271, 2015)
 }
