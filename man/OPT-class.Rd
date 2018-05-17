@@ -1,5 +1,5 @@
 \name{OPT}
-\Rdversion{5.1}
+\Rdversion{7.1}
 \docType{class}
 \alias{OPT-class}
 \alias{plot,OPT-method}

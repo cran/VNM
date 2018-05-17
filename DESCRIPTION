@@ -2,8 +2,8 @@ Package: VNM
 Type: Package
 Title: Finding Multiple-Objective Optimal Designs for the 4-Parameter
         Logistic Model
-Version: 6.1
-Date: 2018-02-14
+Version: 7.1
+Date: 2018-05-16
 Author: Seung Won Hyun, Weng Kee Wong, and Yarong Yang
 Maintainer: Yarong Yang <yarongyang78@gmail.com>
 Imports: graphics, Rcpp
@@ -21,6 +21,6 @@ Collate: 'AllClasses.R' 'summary-methods.R' 'plot-methods.R' 'MOPT.R'
         'RcppExports.R'
 License: GPL (>= 2)
 NeedsCompilation: yes
-Packaged: 2018-02-15 18:20:34 UTC; yarongyang
+Packaged: 2018-05-17 02:22:59 UTC; yarongyang
 Repository: CRAN
-Date/Publication: 2018-02-15 22:36:19 UTC
+Date/Publication: 2018-05-17 03:22:13 UTC

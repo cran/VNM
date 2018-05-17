@@ -1,5 +1,5 @@
 \name{VNM-package}
-\Rdversion{6.1}
+\Rdversion{7.1}
 \alias{VNM-package}
 \docType{package}
 \title{ Tools for constructing 3-objective optimal designs}

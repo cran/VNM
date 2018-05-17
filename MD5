@@ -1,4 +1,4 @@
-f8e53be48be42f849adc2b9fef9e990e *DESCRIPTION
+c9fe8fe89a5fbc2dee82f2e1bf8c0a0d *DESCRIPTION
 c386816e7ad322296d65f607c2c9ed5c *NAMESPACE
 06aa8d9164c405d4c4222183eb0eddc9 *R/AllClasses.R
 ea98a87773c93934b077db13c8e32b0c *R/Deff.R
@@ -13,11 +13,11 @@ c521c094684af1876bb31f6e60d46172 *R/ff.R
 a7ba119355ba90f6e75824134b9bebb3 *inst/CITATION
 8ae3838c2ddf94d955f573f8b2fddf88 *man/Deff.Rd
 9e4a60f02769b12968f07b05b42eb1c3 *man/MOPT.Rd
-5942c887fb90df8931eb48c6af966925 *man/OPT-class.Rd
-ba9f664a7971262cf2d028871245f1e8 *man/PAR-class.Rd
+a7327b03da94f3c92bb98cdb0fc15028 *man/OPT-class.Rd
+f3304addb4cce3a6e613a4995c393882 *man/PAR-class.Rd
 783e2b859fa7ff08bee07e203fd010f2 *man/S.Weight.Rd
-ff10712c9b4d993252eb5dc62579e441 *man/SW-class.Rd
-403be9a6d95523d5479be7b2d0991ac3 *man/VNM-package.Rd
+c748cdce1d505b7f90a5ded236a7a8aa *man/SW-class.Rd
+0c62ac417e7dd4ec898264c859f9a009 *man/VNM-package.Rd
 494de137ff835042bfe29e87b8c1a1ae *man/ceff1.Rd
 f9f761b3364a1fe8fb845c78805ba5de *man/ceff2.Rd
 07b782e20943b7f3fc09c2a909850de5 *man/plot-methods.Rd

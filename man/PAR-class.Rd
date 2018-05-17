@@ -1,5 +1,5 @@
 \name{PAR}
-\Rdversion{5.1}
+\Rdversion{7.1}
 \docType{class}
 \alias{PAR-class}
 
